@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Prosto+One&display=swap"
+        rel="stylesheet">
+    <script src="scripts.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Calculadora Financeira</title>
+</head>
+
+<body>
+    <nav>
+        <div class="navBar_container">
+            <div class="logo-name">
+                <img src="./logo.png" alt="logo" class="logo">
+                <p class="titulo_ast">Analytical Solutions Tech</p>
+            </div>
+            <div class="links-btns">
+                <a href="#" class="link-navbar">Home</a>
+                <a href="#" class="link-navbar">Contato</a>
+                <a href="#" class="link-navbar">Sobre Nós</a>
+                <a href="#" class="link-navbar-active">Área do Cliente</a>
+            </div>
+        </div>
+    </nav>
+    <main id="calculadora">
+        <div class="calculadora_left_content_container">
+            <span class="calculadora-title">Calcule o quanto você pode economizar!</span>
+            <p class="calculadora-text">Segundo o jornal O Globo, <b>cerca de um terço(33%)</b> de todo peixe é perdido no
+                congelamento, apenas por não estar na
+                temperatura correta. <span class="marked-text">Veja o quanto a AST pode economizar por você!</span></p>
+            <div class="div_input_container">
+                <label for="input_peso" class="label_peso">Digite o Peso Transportado no Mês</label>
+                <input type="number" name="input_peso" id="input_peso" class="input_peso" placeholder="Em KG">
+                <button onclick="calcular_prejuizo()" class="btn_calculo">
+                    CALCULAR
+                </button>
+            </div>
+        </div>
+        <div class="calculadora_right_content_container">
+            <span class="calculadora-title">Prejuizos</span>
+            <p class="p_label_topicos">Sendo considerado o preço médio de R$42 por kilo.</p>
+            <p class="p_topico">
+                KG
+            </p>
+            <p id="p_prejuizo_kg" class="p_prejuizo">
+                -
+            </p>
+            <p class="p_topico">
+                R$
+            </p>
+            <p id="p_prejuizo_reais" class="p_prejuizo">
+                -
+            </p>
+            <hr>
+            <span class="calculadora-title">Possíveis Lucros</span>
+            <p class="p_label_topicos">Sendo considerado o preço médio de R$42 por kilo.</p>
+            <p class="p_topico">
+                R$ (25% - 50%)
+            </p>
+            <p id="p_lucros_reais" class="p_lucros">
+                -
+            </p>
+        </div>
+    </main>
+</body>
+
+</html>
+
+<script>
+    function calcular_prejuizo() {
+        var peso = Number(input_peso.value);
+        var desperdicio = peso * 0.33;
+        var valor_desperdicio = desperdicio * 42;
+        var valor_economizado_50 = valor_desperdicio / 2;
+        var valor_economizado_25 = valor_desperdicio / 4;
+
+        let brlFormatMoney = Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+        brlFormatMoney.format(valor_desperdicio);
+
+        p_prejuizo_reais.innerHTML = `${brlFormatMoney.format(valor_desperdicio)}`;
+        p_prejuizo_kg.innerHTML = `${desperdicio.toFixed(2)}`;
+        p_lucros_reais.innerHTML = `${brlFormatMoney.format(valor_economizado_25)} - ${brlFormatMoney.format(valor_economizado_50)}`;
+    }
+</script>
